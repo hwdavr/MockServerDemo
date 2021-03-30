@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SP Weather</string>
+
+    <string name="weather_icon">Weather Icon</string>
+    <string name="temperature_unit">℃</string>
+    <string name="humidity">Humidity: </string>
+    <string name="updated_time">Last updated: </string>
+    <string name="setting">Setting</string>
+</resources>

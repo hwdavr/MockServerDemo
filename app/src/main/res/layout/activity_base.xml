@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.demo.weather.view.widget.MultiStatusLayout
+        android:id="@+id/layoutMultiStatus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/activityContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.demo.weather.view.widget.MultiStatusLayout>
+</layout>

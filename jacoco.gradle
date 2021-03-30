@@ -1,0 +1,81 @@
+apply plugin: 'jacoco'
+
+android.testOptions {
+  unitTests.all {
+    jacoco {
+      includeNoLocationClasses = true
+    }
+  }
+}
+
+project.afterEvaluate {
+  // Grab all build types and product flavors
+  def buildTypes = android.buildTypes.collect { type -> type.name }
+  def productFlavors = android.productFlavors.collect { flavor -> flavor.name }
+
+  // When no product flavors defined, use empty
+  if (!productFlavors) productFlavors.add('')
+
+  productFlavors.each { productFlavorName ->
+    buildTypes.each { buildTypeName ->
+      def sourceName, sourcePath
+      if (!productFlavorName) {
+        sourceName = sourcePath = "${buildTypeName}"
+      } else {
+        sourceName = "${productFlavorName}${buildTypeName.capitalize()}"
+        sourcePath = "${productFlavorName}/${buildTypeName}"
+      }
+      def testTaskName = "test${sourceName.capitalize()}UnitTest"
+      def coverageTaskName = "${testTaskName}Coverage"
+
+      if (project.tasks.findByName(testTaskName) == null) {
+        // If the task dont exists bc was disabled dont create the tasks
+        return
+      }
+
+      // Create coverage task of form 'testFlavorTypeCoverage' depending on 'testFlavorTypeUnitTest'
+      task "${coverageTaskName}"(type: JacocoReport, dependsOn: testTaskName) {
+        group = 'Reporting'
+        description = "Generate Jacoco coverage reports for the ${sourceName.capitalize()} build."
+        println "$description"
+
+        def excludedFiles = [
+                '**/R.class',
+                '**/R$*.class',
+                '**/*$ViewInjector*.*',
+                '**/*$ViewBinder*.*',
+                '**/BuildConfig.*',
+                '**/Manifest*.*',
+                '**/*$Lambda$*.*', // Jacoco can not handle several "$" in class name.
+                '**/*Module.*', // Modules for Dagger.
+                '**/*Dagger*.*', // Dagger auto-generated code.
+                '**/*MembersInjector*.*', // Dagger auto-generated code.
+                '**/*_Provide*Factory*.*',  // Dagger auto-generated code.
+
+                //Classes don't want to cover
+                '**/di/*.*',
+                '**/binding/*.*',
+                '**/View/*.*',
+                '**/customview/*.*',
+                '**/entity/*.*',
+                '**/*Activity.*',
+                '**/*Fragment.*',
+                '**/*Adapter.*',
+                '**/*ViewHolder*.*',
+                '**/SPWeatherApplication.class']
+
+        def coverageSourceDirs = "$project.projectDir/src/main/kotlin"
+
+        classDirectories = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/${buildTypeName}", excludes: excludedFiles)
+
+        sourceDirectories = files(coverageSourceDirs)
+        executionData = files("${buildDir}/jacoco/${testTaskName}.exec")
+
+        reports {
+          xml.enabled = true
+          html.enabled = true
+        }
+      }
+    }
+  }
+}
