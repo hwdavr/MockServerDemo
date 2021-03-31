@@ -4,7 +4,7 @@ import com.demo.weather.di.DaggerAppComponent
 import dagger.android.DaggerApplication
 
 @Suppress("unused")
-class SPWeatherApplication : DaggerApplication() {
+open class DemoApplication : DaggerApplication() {
     private val appComponent = DaggerAppComponent.builder()
         .application(this)
         .build()

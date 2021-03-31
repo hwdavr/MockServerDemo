@@ -1,0 +1,41 @@
+{
+  "location": {
+    "name": "Bena Park",
+    "region": "",
+    "country": "Singapore",
+    "lat": 1.35,
+    "lon": 103.98,
+    "tz_id": "Asia/Singapore",
+    "localtime_epoch": 1617117902,
+    "localtime": "2021-03-30 23:25"
+  },
+  "current": {
+    "last_updated_epoch": 1617117300,
+    "last_updated": "2021-03-30 23:15",
+    "temp_c": 26.0,
+    "temp_f": 78.8,
+    "is_day": 0,
+    "condition": {
+      "text": "Partly cloudy",
+      "icon": "//cdn.weatherapi.com/weather/64x64/night/116.png",
+      "code": 1003
+    },
+    "wind_mph": 0.0,
+    "wind_kph": 0.0,
+    "wind_degree": 47,
+    "wind_dir": "NE",
+    "pressure_mb": 1007.0,
+    "pressure_in": 30.2,
+    "precip_mm": 1.8,
+    "precip_in": 0.07,
+    "humidity": 89,
+    "cloud": 75,
+    "feelslike_c": 28.2,
+    "feelslike_f": 82.7,
+    "vis_km": 10.0,
+    "vis_miles": 6.0,
+    "uv": 1.0,
+    "gust_mph": 5.8,
+    "gust_kph": 9.4
+  }
+}

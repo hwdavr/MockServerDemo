@@ -1,5 +1,6 @@
 package com.demo.weather
 
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 
@@ -20,5 +21,7 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.demo.weather", appContext.packageName)
+        val app = ApplicationProvider.getApplicationContext() as DebugApplication
+        assertNotNull(app.mockServerManager)
     }
 }

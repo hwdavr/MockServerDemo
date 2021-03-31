@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/mock_server_header">
+
+        <SwitchPreferenceCompat
+            app:key="search_api"
+            app:title="@string/mock_search_api_title" />
+
+        <SwitchPreferenceCompat
+            app:key="weather_api"
+            app:title="@string/mock_weather_api_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

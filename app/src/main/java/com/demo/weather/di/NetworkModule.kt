@@ -2,8 +2,10 @@ package com.demo.weather.di
 
 import com.demo.weather.api.ILocalWeatherService
 import com.demo.weather.api.ISearchCityService
+import com.demo.weather.api.UrlInterceptor
 import com.demo.weather.api.weatherapi.WApiLocalWeatherApi
 import com.demo.weather.api.weatherapi.WApiSearchCityApi
+import com.demo.weather.mockserver.MockServerManager
 import com.demo.weather.util.FlowCallAdapterFactory
 import com.demo.weather.util.WEATHER_API_BASE_URL
 import dagger.Module
@@ -17,14 +19,25 @@ import javax.inject.Singleton
 @Suppress("unused")
 @Module
 class NetworkModule {
+
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideMockServerManager() = MockServerManager()
+
+    @Provides
+    fun provideUrlInterceptor(mockServerManager: MockServerManager): UrlInterceptor {
+        return UrlInterceptor(mockServerManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(urlInterceptor: UrlInterceptor): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient
             .Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(urlInterceptor)
             .build()
     }
 

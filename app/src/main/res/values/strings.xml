@@ -1,9 +1,17 @@
 <resources>
-    <string name="app_name">SP Weather</string>
+    <string name="app_name">Mock Server Demo</string>
 
     <string name="weather_icon">Weather Icon</string>
     <string name="temperature_unit">℃</string>
     <string name="humidity">Humidity: </string>
     <string name="updated_time">Last updated: </string>
     <string name="setting">Setting</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="mock_server_header">Mock Server</string>
+
+    <!-- Mock Api Preferences -->
+    <string name="mock_search_api_title">Mock Search Api</string>
+    <string name="mock_weather_api_title">Mock Weather Api</string>
 </resources>

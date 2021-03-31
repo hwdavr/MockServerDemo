@@ -27,7 +27,6 @@ class HomeScreenActivity : BaseActivity<ActivityBaseBinding>() {
     private lateinit var adapter: HomeScreenAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         initUI()
     }
@@ -69,7 +68,11 @@ class HomeScreenActivity : BaseActivity<ActivityBaseBinding>() {
         menuInflater.inflate(R.menu.home_menu, menu)
 
         val settingMenu = menu.findItem(R.id.action_setting)
-
+        settingMenu?.setOnMenuItemClickListener {
+            val intent = Intent(context, SettingsActivity::class.java)
+            startActivity(intent)
+            true
+        }
         return true
     }
 

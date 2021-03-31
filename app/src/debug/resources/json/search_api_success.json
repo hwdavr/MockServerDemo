@@ -1,0 +1,47 @@
+[
+  {
+    "id": 2285154,
+    "name": "Tokyo, Japan",
+    "region": "",
+    "country": "Japan",
+    "lat": 1.35,
+    "lon": 103.98,
+    "url": "kampong-ayer-gemuruh-singapore"
+  },
+  {
+    "id": 2285174,
+    "name": "Kyoto, Japan",
+    "region": "",
+    "country": "Japan",
+    "lat": 1.36,
+    "lon": 103.98,
+    "url": "kampong-darat-nanas-singapore"
+  },
+  {
+    "id": 2285048,
+    "name": "Singapore, Singapore",
+    "region": "",
+    "country": "Singapore",
+    "lat": 1.35,
+    "lon": 103.98,
+    "url": "bena-park-singapore"
+  },
+  {
+    "id": 2285454,
+    "name": "Beijing, China",
+    "region": "",
+    "country": "China",
+    "lat": 1.36,
+    "lon": 103.97,
+    "url": "yan-kit-village-singapore"
+  },
+  {
+    "id": 2285455,
+    "name": "Shanghai, China",
+    "region": "",
+    "country": "China",
+    "lat": 1.36,
+    "lon": 103.97,
+    "url": "yan-kit-singapore"
+  }
+]

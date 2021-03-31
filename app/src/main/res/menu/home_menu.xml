@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_setting"
-        android:icon="@android:drawable/ic_menu_preferences"
+        android:icon="@drawable/ic_baseline_more_vert_24"
         app:showAsAction="always|collapseActionView"
         android:title="@string/setting"/>
 </menu>
