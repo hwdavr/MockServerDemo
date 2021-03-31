@@ -8,6 +8,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.demo.weather.BuildConfig
 import com.demo.weather.R
 import com.demo.weather.databinding.ActivityBaseBinding
 import com.demo.weather.model.City
@@ -65,13 +66,17 @@ class HomeScreenActivity : BaseActivity<ActivityBaseBinding>() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menu.clear()
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.home_menu, menu)
+        if (BuildConfig.DEBUG) {
+            menuInflater.inflate(R.menu.home_menu, menu)
 
-        val settingMenu = menu.findItem(R.id.action_setting)
-        settingMenu?.setOnMenuItemClickListener {
-            val intent = Intent(context, SettingsActivity::class.java)
-            startActivity(intent)
-            true
+            val settingMenu = menu.findItem(R.id.action_setting)
+            settingMenu?.setOnMenuItemClickListener {
+                val intent = Intent()
+                // The activity is from debug build, need to access by class name
+                intent.setClassName(context, "${context.packageName}.view.SettingsActivity")
+                startActivity(intent)
+                true
+            }
         }
         return true
     }

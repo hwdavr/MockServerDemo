@@ -39,12 +39,8 @@ class SettingsActivity : AppCompatActivity() {
         private val mockServerManager get() = (activity as SettingsActivity).mockServerManager
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            if (BuildConfig.DEBUG) {
-                setPreferencesFromResource(R.xml.debug_setting_preferences, rootKey)
-                initializeMockApiSwitches()
-            } else {
-                setPreferencesFromResource(R.xml.setting_preferences, rootKey)
-            }
+            setPreferencesFromResource(R.xml.debug_setting_preferences, rootKey)
+            initializeMockApiSwitches()
         }
 
         private fun initializeMockApiSwitches() {
@@ -73,7 +69,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         private fun enableMockServer() {
-            mockServerManager.enableMockServer()
+            mockServerManager.startServer()
         }
     }
 }

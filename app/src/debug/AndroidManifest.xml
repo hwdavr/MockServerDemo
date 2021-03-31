@@ -8,6 +8,9 @@
         android:name=".DebugApplication"
         tools:replace="android:name">
 
+        <activity
+            android:name=".view.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

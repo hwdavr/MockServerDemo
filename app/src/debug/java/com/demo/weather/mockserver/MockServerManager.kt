@@ -5,19 +5,25 @@ import com.demo.weather.mockserver.dispatchers.ApiDispatcher
 import okhttp3.mockwebserver.MockWebServer
 
 class MockServerManager {
+    var port = 0
     private val mockApis = mutableMapOf<String, MockScenarios>()
     private var isServerStarted = false
 
-    fun enableMockServer() {
+    fun startServer() {
         if (!isServerStarted) {
             Thread {
                 val mockServer = MockWebServer()
                 mockServer.dispatcher = ApiDispatcher(mockApis)
-                mockServer.start(PORT)
+                mockServer.start()
+                port = mockServer.port
                 Log.d(TAG, "Started mock server at: ${mockServer.url("")}")
                 isServerStarted = true
             }.start()
         }
+    }
+
+    fun stopServer() {
+
     }
 
     fun enableApi(api: String, scenarios: MockScenarios) {
@@ -42,6 +48,5 @@ class MockServerManager {
     companion object {
         private const val TAG = "MockServerManager"
         const val HOST = "localhost"
-        const val PORT = 9000
     }
 }

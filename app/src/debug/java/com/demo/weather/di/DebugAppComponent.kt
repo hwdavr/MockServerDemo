@@ -1,7 +1,7 @@
 package com.demo.weather.di
 
 import android.app.Application
-import com.demo.weather.DemoApplication
+import com.demo.weather.DebugApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -13,19 +13,19 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidInjectionModule::class,
-    ActivityModule::class,
+    DebugActivityModule::class,
     ViewModelModule::class,
-    NetworkModule::class])
-interface AppComponent: AndroidInjector<DemoApplication> {
+    DebugNetworkModule::class])
+interface DebugAppComponent: AndroidInjector<DebugApplication> {
 
-    override fun inject(instance: DemoApplication)
+    override fun inject(instance: DebugApplication)
 
     @Component.Builder
     interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
 
-        fun build(): AppComponent
+        fun build(): DebugAppComponent
     }
 
 }
