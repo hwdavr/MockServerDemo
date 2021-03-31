@@ -6,6 +6,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.demo.weather.BuildConfig
 import com.demo.weather.R
+import com.demo.weather.mockserver.MockScenarios
 import com.demo.weather.mockserver.MockServerManager
 import com.demo.weather.util.WEATHER_API_CURRENT_WEATHER_URL
 import com.demo.weather.util.WEATHER_API_SEARCH_URL
@@ -51,7 +52,7 @@ class SettingsActivity : AppCompatActivity() {
             searchApiSwitch?.isChecked = false
             searchApiSwitch?.setOnPreferenceChangeListener { preference, newValue ->
                 if (newValue == true) {
-                    mockServerManager.enableApi(WEATHER_API_SEARCH_URL)
+                    mockServerManager.enableApi(WEATHER_API_SEARCH_URL, MockScenarios.SUCCESS)
                 } else {
                     mockServerManager.disableApi(WEATHER_API_SEARCH_URL)
                 }
@@ -62,7 +63,7 @@ class SettingsActivity : AppCompatActivity() {
             weatherApiSwitch?.isChecked = false
             weatherApiSwitch?.setOnPreferenceChangeListener { preference, newValue ->
                 if (newValue == true) {
-                    mockServerManager.enableApi(WEATHER_API_CURRENT_WEATHER_URL)
+                    mockServerManager.enableApi(WEATHER_API_CURRENT_WEATHER_URL, MockScenarios.SUCCESS)
                 } else {
                     mockServerManager.disableApi(WEATHER_API_CURRENT_WEATHER_URL)
                 }

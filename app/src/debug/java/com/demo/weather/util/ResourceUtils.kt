@@ -17,12 +17,13 @@ object ResourceUtils {
     fun getJsonString(path : String) : String {
         // Load the JSON response
         return try {
-            this.javaClass.classLoader
-                    ?.getResourceAsStream(path)
-                    ?.source()
-                    ?.buffer()
-                    ?.readString(StandardCharsets.UTF_8)
-                    .orEmpty()
+            this.javaClass
+                .classLoader
+                ?.getResourceAsStream(path)
+                ?.source()
+                ?.buffer()
+                ?.readString(StandardCharsets.UTF_8)
+                .orEmpty()
         } catch (e: IOException) {
             ""
         }

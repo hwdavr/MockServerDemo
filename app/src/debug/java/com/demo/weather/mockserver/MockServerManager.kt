@@ -1,18 +1,18 @@
 package com.demo.weather.mockserver
 
 import android.util.Log
-import com.demo.weather.mockserver.dispatchers.MockDispatcher
+import com.demo.weather.mockserver.dispatchers.ApiDispatcher
 import okhttp3.mockwebserver.MockWebServer
 
 class MockServerManager {
-    private val mockApis = mutableListOf<String>()
+    private val mockApis = mutableMapOf<String, MockScenarios>()
     private var isServerStarted = false
 
     fun enableMockServer() {
         if (!isServerStarted) {
             Thread {
                 val mockServer = MockWebServer()
-                mockServer.dispatcher = MockDispatcher()
+                mockServer.dispatcher = ApiDispatcher(mockApis)
                 mockServer.start(PORT)
                 Log.d(TAG, "Started mock server at: ${mockServer.url("")}")
                 isServerStarted = true
@@ -20,10 +20,8 @@ class MockServerManager {
         }
     }
 
-    fun enableApi(api: String) {
-        if (!mockApis.contains(api)) {
-            mockApis.add(api)
-        }
+    fun enableApi(api: String, scenarios: MockScenarios) {
+        mockApis[api] = scenarios
     }
 
     fun disableApi(api: String) {
@@ -34,7 +32,7 @@ class MockServerManager {
 
     fun shouldMockApi(api: String): Boolean {
         mockApis.forEach {
-            if (api.contains(it)) {
+            if (api.contains(it.key)) {
                 return true
             }
         }
