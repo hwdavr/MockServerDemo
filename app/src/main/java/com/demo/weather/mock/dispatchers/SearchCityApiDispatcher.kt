@@ -1,6 +1,7 @@
-package com.demo.weather.mockserver.dispatchers
+package com.demo.weather.mock.dispatchers
 
-import com.demo.weather.mockserver.MockScenarios
+import com.demo.weather.mock.MockUtils
+import com.demo.weather.mock.mockserver.MockScenarios
 import com.demo.weather.util.ResourceUtils
 import com.demo.weather.util.WEATHER_API_SEARCH_URL
 import okhttp3.mockwebserver.Dispatcher
@@ -13,13 +14,11 @@ class SearchCityApiDispatcher(
     override fun dispatch(request: RecordedRequest): MockResponse {
         return when(mockApis[WEATHER_API_SEARCH_URL]) {
             MockScenarios.SUCCESS ->
-                MockResponse().setResponseCode(200).setBody(
-                    ResourceUtils.getJsonString("json/search_api_success.json")
-                )
+                MockUtils.success("search_api_success.json")
             MockScenarios.FAILURE ->
-                MockResponse().setResponseCode(400)
+                MockUtils.failure(500)
             else ->
-                MockResponse().setResponseCode(404)
+                MockUtils.default
         }
     }
 }

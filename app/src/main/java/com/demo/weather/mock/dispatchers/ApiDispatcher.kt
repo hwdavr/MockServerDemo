@@ -1,6 +1,6 @@
-package com.demo.weather.mockserver.dispatchers
+package com.demo.weather.mock.dispatchers
 
-import com.demo.weather.mockserver.MockScenarios
+import com.demo.weather.mock.mockserver.MockScenarios
 import com.demo.weather.util.WEATHER_API_CURRENT_WEATHER_URL
 import com.demo.weather.util.WEATHER_API_SEARCH_URL
 import okhttp3.mockwebserver.Dispatcher

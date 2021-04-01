@@ -1,29 +1,31 @@
-package com.demo.weather.mockserver
+package com.demo.weather.mock.mockserver
 
 import android.util.Log
-import com.demo.weather.mockserver.dispatchers.ApiDispatcher
+import com.demo.weather.mock.dispatchers.ApiDispatcher
 import okhttp3.mockwebserver.MockWebServer
 
 class MockServerManager {
     var port = 0
     private val mockApis = mutableMapOf<String, MockScenarios>()
+    private var mockServer: MockWebServer? = null
     private var isServerStarted = false
 
     fun startServer() {
         if (!isServerStarted) {
             Thread {
-                val mockServer = MockWebServer()
-                mockServer.dispatcher = ApiDispatcher(mockApis)
-                mockServer.start()
-                port = mockServer.port
-                Log.d(TAG, "Started mock server at: ${mockServer.url("")}")
+                mockServer = MockWebServer()
+                mockServer!!.dispatcher = ApiDispatcher(mockApis)
+                mockServer!!.start()
+                port = mockServer!!.port
+                Log.d(TAG, "Started mock server at: ${mockServer!!.url("")}")
                 isServerStarted = true
             }.start()
         }
     }
 
     fun stopServer() {
-
+        isServerStarted = false
+        mockServer?.shutdown()
     }
 
     fun enableApi(api: String, scenarios: MockScenarios) {

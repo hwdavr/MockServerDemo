@@ -1,4 +1,4 @@
-package com.demo.weather.mockserver
+package com.demo.weather.mock.mockserver
 
 enum class MockScenarios {
     SUCCESS,

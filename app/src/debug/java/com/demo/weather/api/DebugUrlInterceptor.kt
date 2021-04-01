@@ -1,6 +1,6 @@
 package com.demo.weather.api
 
-import com.demo.weather.mockserver.MockServerManager
+import com.demo.weather.mock.mockserver.MockServerManager
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request

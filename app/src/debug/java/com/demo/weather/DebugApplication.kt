@@ -3,7 +3,7 @@ package com.demo.weather
 import com.demo.weather.api.DebugUrlInterceptor
 import com.demo.weather.api.UrlInterceptorHolder
 import com.demo.weather.di.DaggerDebugAppComponent
-import com.demo.weather.mockserver.MockServerManager
+import com.demo.weather.mock.mockserver.MockServerManager
 import dagger.android.DaggerApplication
 import javax.inject.Inject
 
