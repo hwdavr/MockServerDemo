@@ -1,23 +1,27 @@
 package com.demo.weather
 
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.espresso.IdlingRegistry
+import com.jakewharton.espresso.OkHttp3IdlingResource
+import org.junit.After
 import org.junit.Before
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-class BaseUiMockServerTest {
-    private val app = ApplicationProvider.getApplicationContext() as DebugApplication
-    private val mockServerManager = app.mockServerManager
+open class BaseUiMockServerTest {
+    protected val app = ApplicationProvider.getApplicationContext() as DebugApplication
+    protected val mockServerManager = app.mockServerManager
 
     @Before
-    fun setUp() {
-        startMockServer()
-    }
-
-    private fun startMockServer() {
+    open fun setUp() {
         mockServerManager.startServer()
+        IdlingRegistry.getInstance().register(
+            OkHttp3IdlingResource.create(
+                "okhttp",
+                app.okHttpClient
+            ))
     }
 
-
+    @After
+    open fun tearDown() {
+        mockServerManager.stopServer()
+    }
 }

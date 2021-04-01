@@ -5,6 +5,7 @@ import com.demo.weather.api.UrlInterceptorHolder
 import com.demo.weather.di.DaggerDebugAppComponent
 import com.demo.weather.mock.mockserver.MockServerManager
 import dagger.android.DaggerApplication
+import okhttp3.OkHttpClient
 import javax.inject.Inject
 
 class DebugApplication : DaggerApplication() {
@@ -17,6 +18,10 @@ class DebugApplication : DaggerApplication() {
 
     @Inject
     lateinit var urlInterceptorHolder: UrlInterceptorHolder
+
+    // Get for instrumentation test
+    @Inject
+    lateinit var okHttpClient: OkHttpClient
 
     override fun onCreate() {
         super.onCreate()
