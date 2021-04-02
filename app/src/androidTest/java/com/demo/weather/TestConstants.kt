@@ -1,3 +1,3 @@
 package com.demo.weather
 
-internal const val LAUNCH_DELAY: Long = 1000
+internal const val LAUNCH_DELAY: Long = 500

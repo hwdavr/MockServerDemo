@@ -23,7 +23,6 @@ class DebugUrlInterceptor : Interceptor {
                 .host(MockServerManager.HOST)
                 .port(mockServerManager?.port ?: 0)
                 .build()
-            Log.i("DebugUrlInterceptor", "Mocking URL: ${newUrl.toString()}")
             request = request.newBuilder()
                 .url(newUrl)
                 .build()
