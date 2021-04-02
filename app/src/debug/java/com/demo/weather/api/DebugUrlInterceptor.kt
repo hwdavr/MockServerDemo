@@ -1,5 +1,6 @@
 package com.demo.weather.api
 
+import android.util.Log
 import com.demo.weather.mock.mockserver.MockServerManager
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
@@ -22,6 +23,7 @@ class DebugUrlInterceptor : Interceptor {
                 .host(MockServerManager.HOST)
                 .port(mockServerManager?.port ?: 0)
                 .build()
+            Log.i("DebugUrlInterceptor", "Mocking URL: ${newUrl.toString()}")
             request = request.newBuilder()
                 .url(newUrl)
                 .build()

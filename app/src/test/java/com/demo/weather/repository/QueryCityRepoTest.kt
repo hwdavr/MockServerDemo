@@ -8,8 +8,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -46,7 +46,7 @@ class QueryCityRepoTest {
     }
 
     @Test
-    fun queryCities() = runBlockingTest {
+    fun queryCities() = runBlocking {
         lenient().`when`(service.queryCities(com.nhaarman.mockitokotlin2.any())).thenReturn(
             flowOf(
                 listOf(

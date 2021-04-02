@@ -20,7 +20,6 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
-
 @RunWith(MockitoJUnitRunner::class)
 class HomeScreenViewModelTest {
     private lateinit var  queryRepo: QueryCityRepo

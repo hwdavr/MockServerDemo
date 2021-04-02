@@ -9,8 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -46,7 +46,7 @@ class CityWeatherRepoTest {
     }
 
     @Test
-    fun currentWeather() = runBlockingTest {
+    fun currentWeather() = runBlocking {
         val mockCity = "Singapore"
         val mockTime = "00:00"
         val mockTemp = "0"
