@@ -6,7 +6,8 @@ A demo app to show how to use MockWebServer to mock the response for manual test
 Remove the local keystore file: localhost.keystore.jks
 Generate keystore:
 ```
-keytool -genkey -v -keystore localhost.keystore.jks -alias localhost -dname -ext SAN=dns:localhost -keypass 123456 -storepass 123456 -keyalg RSA -keysize 2048 -validity 10000 -storetype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath /path/to/bouncycastle.jar
+cd app/src/debug/resources
+keytool -genkey -v -keystore localhost.keystore.jks -alias localhost -ext SAN=dns:localhost -keypass 123456 -storepass 123456 -keyalg RSA -keysize 2048 -validity 10000 -storetype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath ../../../../bcprov-jdk15on.jar
 ```
 Extract public key:
 ```

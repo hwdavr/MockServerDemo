@@ -11,13 +11,17 @@ open class BaseUiMockServerTest {
     protected val app = ApplicationProvider.getApplicationContext() as DebugApplication
     protected val mockServerManager = app.mockServerManager
 
-    @Before
-    open fun setUp() {
+    open fun startMockServer() {
         if (ENABLE_SSL_PINNING && BuildConfig.DEBUG) {
             mockServerManager.startSslServer()
         } else {
             mockServerManager.startServer()
         }
+    }
+
+    @Before
+    open fun setUp() {
+        startMockServer()
         IdlingRegistry.getInstance().register(
             OkHttp3IdlingResource.create(
                 "okhttp",

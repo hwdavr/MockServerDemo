@@ -7,9 +7,10 @@ import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManagerFactory
 
 object LocalHostSocketFactory {
+    const val DEFAULT_KEYSTORE = "localhost.keystore.jks"
 
-    fun getSocketFactory(): SSLSocketFactory {
-        val stream = this.javaClass.classLoader?.getResourceAsStream("localhost.keystore.jks")
+    fun getSocketFactory(keystore: String?): SSLSocketFactory {
+        val stream = this.javaClass.classLoader?.getResourceAsStream(keystore)
         val serverKeyStorePassword = "123456".toCharArray()
         val serverKeyStore = KeyStore.getInstance(KeyStore.getDefaultType())
         serverKeyStore.load(stream, serverKeyStorePassword)

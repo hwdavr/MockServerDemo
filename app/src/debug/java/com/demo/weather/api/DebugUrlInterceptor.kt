@@ -1,8 +1,7 @@
 package com.demo.weather.api
 
-import android.util.Log
 import com.demo.weather.mock.mockserver.MockServerManager
-import com.demo.weather.util.ENABLE_SSL_PINNING
+import com.demo.weather.mock.mockserver.MockServerManager.Companion.HTTPS_SCHEME
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -21,13 +20,7 @@ class DebugUrlInterceptor : Interceptor {
         var request: Request = chain.request()
         if (mockServerManager?.shouldMockApi(request.url.encodedPath) == true) {
             val newUrl: HttpUrl = request.url.newBuilder()
-                .scheme(
-                    if (ENABLE_SSL_PINNING) {
-                        MockServerManager.HTTPS_SCHEME
-                    } else {
-                        MockServerManager.HTTP_SCHEME
-                    }
-                )
+                .scheme(mockServerManager?.scheme ?: HTTPS_SCHEME)
                 .host(MockServerManager.HOST)
                 .port(mockServerManager?.port ?: 1)
                 .build()
