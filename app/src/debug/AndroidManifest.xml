@@ -6,7 +6,9 @@
 
     <application
         android:name=".DebugApplication"
-        tools:replace="android:name">
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:replace="android:name"
+        tools:targetApi="n">
 
         <activity
             android:name=".view.SettingsActivity"

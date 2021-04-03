@@ -46,7 +46,7 @@ constructor(
                         weatherDescLiveData.value = obj.condition?.description
                         humidityLiveData.value = "Humidity: ${obj.humidity}"
                         updatedTimeLiveData.value = "Last updated: ${obj.last_updated}"
-                        weatherIconUrlLiveData.value = "http:${obj.condition?.icon}"
+                        weatherIconUrlLiveData.value = "https:${obj.condition?.icon}"
                     }
 
                     weatherVisibility.value = View.VISIBLE

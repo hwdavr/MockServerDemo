@@ -2,6 +2,7 @@ package com.demo.weather
 
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.IdlingRegistry
+import com.demo.weather.util.ENABLE_SSL_PINNING
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import org.junit.After
 import org.junit.Before
@@ -12,7 +13,11 @@ open class BaseUiMockServerTest {
 
     @Before
     open fun setUp() {
-        mockServerManager.startServer()
+        if (ENABLE_SSL_PINNING && BuildConfig.DEBUG) {
+            mockServerManager.startSslServer()
+        } else {
+            mockServerManager.startServer()
+        }
         IdlingRegistry.getInstance().register(
             OkHttp3IdlingResource.create(
                 "okhttp",

@@ -2,10 +2,11 @@ package com.demo.weather.mock.mockserver
 
 import android.util.Log
 import com.demo.weather.mock.dispatchers.ApiDispatcher
+import com.demo.weather.util.LocalHostSocketFactory
 import okhttp3.mockwebserver.MockWebServer
 
 class MockServerManager {
-    var port = 0
+    var port = 1
     private val mockApis = mutableMapOf<String, MockScenarios>()
     private var mockServer: MockWebServer? = null
     private var isServerStarted = false
@@ -18,6 +19,20 @@ class MockServerManager {
                 mockServer!!.start()
                 port = mockServer!!.port
                 Log.d(TAG, "Started mock server at: ${mockServer!!.url("")}")
+                isServerStarted = true
+            }.start()
+        }
+    }
+
+    fun startSslServer() {
+        if (!isServerStarted) {
+            Thread {
+                mockServer = MockWebServer()
+                mockServer!!.useHttps(LocalHostSocketFactory.getSocketFactory(), false)
+                mockServer!!.dispatcher = ApiDispatcher(mockApis)
+                mockServer!!.start()
+                port = mockServer!!.port
+                Log.d(TAG, "Started mock ssl server at: ${mockServer!!.url("")}")
                 isServerStarted = true
             }.start()
         }
@@ -50,5 +65,7 @@ class MockServerManager {
     companion object {
         private const val TAG = "MockServerManager"
         const val HOST = "localhost"
+        const val HTTP_SCHEME = "http"
+        const val HTTPS_SCHEME = "https"
     }
 }

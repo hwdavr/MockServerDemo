@@ -50,7 +50,7 @@ class CityWeatherRepoTest {
         val mockCity = "Singapore"
         val mockTime = "00:00"
         val mockTemp = "0"
-        val mockIconUrl = "http://"
+        val mockIconUrl = "https://"
         val mockWeather = "Cloudy"
         val mockHumidity = "80"
         val currentCondition = CurrentCondition().apply {

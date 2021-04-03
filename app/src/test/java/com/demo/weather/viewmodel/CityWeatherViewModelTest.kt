@@ -71,7 +71,7 @@ class CityWeatherViewModelTest {
         delay(1_000)
         assertEquals(viewModel.updatedTimeLiveData.value, "Last updated: $mockTime")
         assertEquals(viewModel.temperatureLiveData.value, mockTemp)
-        assertEquals(viewModel.weatherIconUrlLiveData.value, "http:$mockIconUrl")
+        assertEquals(viewModel.weatherIconUrlLiveData.value, "https:$mockIconUrl")
         assertEquals(viewModel.weatherDescLiveData.value, mockWeather)
         assertEquals(viewModel.humidityLiveData.value, "Humidity: $mockHumidity")
     }

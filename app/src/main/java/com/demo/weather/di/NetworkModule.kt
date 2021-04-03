@@ -6,16 +6,21 @@ import com.demo.weather.api.UrlInterceptor
 import com.demo.weather.api.UrlInterceptorHolder
 import com.demo.weather.api.weatherapi.WApiLocalWeatherApi
 import com.demo.weather.api.weatherapi.WApiSearchCityApi
-import com.demo.weather.util.FlowCallAdapterFactory
+import com.demo.weather.util.*
+import com.demo.weather.util.ENABLE_SSL_PINNING
 import com.demo.weather.util.WEATHER_API_BASE_URL
+import com.demo.weather.util.WEATHER_API_CERT_PIN
+import com.demo.weather.util.WEATHER_API_DOMAIN
 import dagger.Module
 import dagger.Provides
+import okhttp3.CertificatePinner
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
+
 
 @Suppress("unused")
 @Module
@@ -24,6 +29,11 @@ open class NetworkModule {
     open fun getUrlInterceptor(): Interceptor {
         return UrlInterceptor()
     }
+
+    open fun getCertificatePinner() =
+        CertificatePinner.Builder()
+            .add(WEATHER_API_DOMAIN, WEATHER_API_CERT_PIN)
+            .build()
 
     @Provides
     @Singleton
@@ -38,11 +48,21 @@ open class NetworkModule {
     fun provideOkHttpClient(urlInterceptorHolder: UrlInterceptorHolder): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        return OkHttpClient
-            .Builder()
-            .addInterceptor(interceptor)
-            .addInterceptor(urlInterceptorHolder.urlInterceptor)
-            .build()
+
+        if (ENABLE_SSL_PINNING) {
+            return OkHttpClient
+                .Builder()
+                .addInterceptor(interceptor)
+                .addInterceptor(urlInterceptorHolder.urlInterceptor)
+                .certificatePinner(getCertificatePinner())
+                .build()
+        } else {
+            return OkHttpClient
+                .Builder()
+                .addInterceptor(interceptor)
+                .addInterceptor(urlInterceptorHolder.urlInterceptor)
+                .build()
+        }
     }
 
     @Provides

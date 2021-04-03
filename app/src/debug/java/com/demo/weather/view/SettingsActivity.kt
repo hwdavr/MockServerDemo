@@ -7,6 +7,7 @@ import androidx.preference.SwitchPreferenceCompat
 import com.demo.weather.R
 import com.demo.weather.mock.mockserver.MockScenarios
 import com.demo.weather.mock.mockserver.MockServerManager
+import com.demo.weather.util.ENABLE_SSL_PINNING
 import com.demo.weather.util.WEATHER_API_CURRENT_WEATHER_URL
 import com.demo.weather.util.WEATHER_API_SEARCH_URL
 import dagger.android.AndroidInjection
@@ -74,7 +75,11 @@ class SettingsActivity : AppCompatActivity() {
 
         private fun startOrStopServer() {
             if (apiCnt > 0) {
-                mockServerManager.startServer()
+                if (ENABLE_SSL_PINNING) {
+                    mockServerManager.startSslServer()
+                } else {
+                    mockServerManager.startServer()
+                }
             } else {
                 mockServerManager.stopServer()
             }
