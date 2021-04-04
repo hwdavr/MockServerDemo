@@ -28,7 +28,7 @@ class DebugApplication : DaggerApplication() {
         appComponent.inject(this)
 
         (urlInterceptorHolder.urlInterceptor as? DebugUrlInterceptor)
-            ?.setMockServerManger(mockServerManager)
+            ?.mockServerManager = mockServerManager
     }
 
     override fun applicationInjector() = appComponent

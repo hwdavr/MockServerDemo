@@ -1,9 +1,6 @@
 package com.demo.weather.di
 
-import com.demo.weather.api.ILocalWeatherService
-import com.demo.weather.api.ISearchCityService
-import com.demo.weather.api.UrlInterceptor
-import com.demo.weather.api.UrlInterceptorHolder
+import com.demo.weather.api.*
 import com.demo.weather.api.weatherapi.WApiLocalWeatherApi
 import com.demo.weather.api.weatherapi.WApiSearchCityApi
 import com.demo.weather.util.*
@@ -38,9 +35,11 @@ open class NetworkModule {
     @Provides
     @Singleton
     fun provideUrlInterceptorHolder(): UrlInterceptorHolder {
-        return UrlInterceptorHolder(
-            getUrlInterceptor()
-        )
+        val urlInterceptor = getUrlInterceptor()
+        if (urlInterceptor is DebugUrlInterceptor) {
+            urlInterceptor.certificatePinner = getCertificatePinner()
+        }
+        return UrlInterceptorHolder(urlInterceptor)
     }
 
     @Provides

@@ -9,7 +9,7 @@ Generate keystore:
 cd app/src/debug/resources
 keytool -genkey -v -keystore localhost.keystore.jks -alias localhost -ext SAN=dns:localhost -keypass 123456 -storepass 123456 -keyalg RSA -keysize 2048 -validity 10000 -storetype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath ../../../../bcprov-jdk15on.jar
 ```
-Extract public key:
+Extract certificate:
 ```
 keytool -export -alias localhost -keystore ./localhost.keystore.jks -file ../res/raw/certificate.cer -storetype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath /path/to/bouncycastle.jar
 ```
