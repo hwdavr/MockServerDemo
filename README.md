@@ -1,6 +1,13 @@
 # Mock Server Demo
 
-A demo app to show how to use MockWebServer to mock the response for manual test, auto UI test and junit test. 
+A demo app to show how to use MockWebServer to mock the response for manual test, auto UI test and junit test.
+
+Below articles explain the implementation of the demo:
+* Android: How to use MockWebServer for Edge-cases Test, UI Test, and Unit Test together?
+https://weidianhuang.medium.com/android-how-to-use-mockwebserver-for-edge-cases-test-automated-test-and-unit-test-together-3eb26e19ce68
+
+* How to write automated tests for Certificate Pinning by using MockWebServer?
+https://weidianhuang.medium.com/how-to-write-automated-tests-for-certificate-pinning-by-using-mockwebserver-ace355506342
 
 ## General new keystore for SSL pinning test
 Remove the local keystore file: localhost.keystore.jks
