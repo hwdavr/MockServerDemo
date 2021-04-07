@@ -8,7 +8,7 @@ internal const val WEATHER_API_BASE_URL = "https://api.weatherapi.com"
 internal const val WEATHER_API_SEARCH_URL = "/v1/search.json"
 internal const val WEATHER_API_CURRENT_WEATHER_URL = "/v1/current.json"
 
-internal const val ENABLE_SSL_PINNING = false
+internal const val ENABLE_SSL_PINNING = true
 internal const val WEATHER_API_DOMAIN = "api.weatherapi.com"
 internal const val WEATHER_API_CERT_PIN = "sha256/Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys="
 

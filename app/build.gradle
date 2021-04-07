@@ -116,6 +116,7 @@ dependencies {
         exclude group: 'androidx.documentfile', module: 'documentfile'
         exclude group: 'androidx.localbroadcastmanager', module: 'localbroadcastmanager'
     }
+    androidTestImplementation 'com.kaspersky.android-components:kaspresso:1.2.0'
     androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 
 }
